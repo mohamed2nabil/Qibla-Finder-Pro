@@ -1,0 +1,287 @@
+/* Qibla Finder Pro - Full Stylesheet
+   Design: Modern Glassmorphism & Hybrid Professional Layers
+*/
+
+:root {
+    /* وضع الليل (الافتراضي) */
+    --primary-bg: #0f172a;
+    --accent-gold: #fbbf24;
+    --accent-gold-glow: rgba(251, 191, 36, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-white: #f8fafc;
+    --text-gray: #94a3b8;
+    --glow-shadow: 0 0 30px var(--accent-gold-glow);
+}
+
+/* فئات تبديل الوضع (Light/Dark Mode) */
+body.light-mode {
+    --primary-bg: #f1f5f9;
+    --text-white: #1e293b;
+    --glass-bg: rgba(0, 0, 0, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --text-gray: #64748b;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--primary-bg);
+    color: var(--text-white);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* فيديو الخلفية (الواقع المعزز) */
+#video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* شاشات التغطية (Loading & Onboarding) */
+.spinner-overlay, .overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--primary-bg);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(15px);
+}
+
+.onboarding-card {
+    background: var(--glass-bg);
+    padding: 40px 30px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    max-width: 340px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.start-btn {
+    background: var(--accent-gold);
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+/* الهيدر المحسن */
+.glass-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+}
+
+.header-btn {
+    background: none;
+    border: 1px solid var(--glass-border);
+    color: var(--text-white);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* منطقة البوصلة الرئيسية */
+#visualizer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.compass-container {
+    position: relative;
+    width: 85vw;
+    height: 85vw;
+    max-width: 350px;
+    max-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-head-indicator {
+    position: absolute;
+    top: -35px;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    text-shadow: var(--glow-shadow);
+    z-index: 10;
+}
+
+.compass-canvas-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glass-bg) 0%, transparent 75%);
+    border: 8px solid var(--glass-border);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+}
+
+/* طبقات البوصلة */
+.dial-plate {
+    position: absolute;
+    inset: 15px;
+    border-radius: 50%;
+    transition: transform 0.1s linear;
+}
+
+.direction {
+    position: absolute;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--text-gray);
+}
+
+.direction.n { top: 10px; left: 50%; transform: translateX(-50%); color: #ef4444; }
+.direction.e { right: 10px; top: 50%; transform: translateY(-50%); }
+.direction.s { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.direction.w { left: 10px; top: 50%; transform: translateY(-50%); }
+
+.needle-box {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.1s linear;
+}
+
+.kaaba-icon {
+    position: absolute;
+    top: 20px;
+    width: 45px;
+    filter: drop-shadow(var(--glow-shadow));
+}
+
+.needle-arrow {
+    width: 6px;
+    height: 42%;
+    background: linear-gradient(to top, transparent, var(--accent-gold));
+    position: absolute;
+    top: 10%;
+    clip-path: polygon(50% 0%, 100% 100%, 50% 82%, 0% 100%);
+}
+
+/* لوحة البيانات */
+.dashboard-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    border-top: 1px solid var(--glass-border);
+    padding: 20px;
+    border-radius: 35px 35px 0 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    background: var(--glass-bg);
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--glass-border);
+}
+
+.stat-item i { color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 5px; }
+
+/* أوقات الصلاة */
+.prayer-cards-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 10px 0;
+    scrollbar-width: none;
+}
+
+.prayer-card {
+    min-width: 95px;
+    background: var(--glass-bg);
+    padding: 15px 10px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+}
+
+/* الحالة النشطة عند النجاح */
+.success-glow {
+    position: absolute;
+    inset: -25px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-gold);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    box-shadow: inset 0 0 30px var(--accent-gold), 0 0 30px var(--accent-gold);
+}
+
+.facing-qibla .success-glow { opacity: 0.7; animation: pulse-gold 1.5s infinite; }
+.facing-qibla .compass-canvas-wrapper { border-color: var(--accent-gold); }
+
+@keyframes pulse-gold {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.15); opacity: 0; }
+}
+
+/* الأزرار العائمة */
+.floating-actions {
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.fab {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #000;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.hidden { display: none !important; }

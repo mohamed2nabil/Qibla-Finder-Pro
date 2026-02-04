@@ -1,0 +1,26 @@
+{
+  "short_name": "القبلة",
+  "name": "محدد القبلة الاحترافي - Qibla Finder Pro",
+  "description": "تطبيق احترافي لتحديد اتجاه القبلة باستخدام الواقع المعزز ومواقيت الصلاة.",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/color/192/kaaba.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://img.icons8.com/color/512/kaaba.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "scope": "/",
+  "lang": "ar"
+}

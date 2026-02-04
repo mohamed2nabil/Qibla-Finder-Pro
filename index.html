@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تحديد اتجاه القبلة - Qibla Finder Pro</title>
+    
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/192/kaaba.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode"> <video id="video-bg" autoplay playsinline muted class="hidden"></video>
+
+    <div id="loading-spinner" class="spinner-overlay hidden">
+        <div class="loader-content">
+            <div class="qibla-loader"></div>
+            <p>جاري تحديد موقعك بدقة...</p>
+        </div>
+    </div>
+
+    <div id="onboarding" class="overlay">
+        <div class="onboarding-card">
+            <div class="icon-anim">
+                <i class="fas fa-mobile-screen-button"></i>
+                <div class="ripple"></div>
+            </div>
+            <h2>محدد القبلة الاحترافي</h2>
+            <p>للحصول على دقة مثالية، يرجى وضع الهاتف بشكل مسطح بعيداً عن الأجسام المغناطيسية</p>
+            <button id="start-btn" onclick="startApp()" class="start-btn">ابدأ الآن</button>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <div class="logo">
+            <i class="fas fa-mosque"></i>
+            <span>القبلة</span>
+        </div>
+        <div class="header-controls">
+            <button id="ar-toggle" class="header-btn" title="الواقع المعزز"><i class="fas fa-camera"></i></button>
+            <button id="theme-toggle" class="header-btn" title="تغيير الوضع"><i class="fas fa-sun"></i></button>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <div id="visualizer">
+            <div class="compass-container">
+                <div class="phone-head-indicator">
+                    <i class="fas fa-caret-up"></i>
+                </div>
+
+                <div class="compass-canvas-wrapper" id="compass-ui">
+                    <div class="compass-layer outer-frame"></div>
+                    
+                    <div class="compass-layer dial-plate" id="dial">
+                        <span class="direction n">N</span>
+                        <span class="direction e">E</span>
+                        <span class="direction s">S</span>
+                        <span class="direction w">W</span>
+                    </div>
+
+                    <div class="compass-layer needle-box" id="qibla-needle">
+                        <div class="kaaba-icon">
+                            <img src="https://img.icons8.com/color/48/kaaba.png" alt="Kaba">
+                        </div>
+                        <div class="needle-arrow"></div>
+                    </div>
+
+                    <div class="compass-center"></div>
+                </div>
+
+                <div id="success-halo" class="success-glow"></div>
+            </div>
+            
+            <div id="status-msg" class="status-text">وجه الهاتف نحو الكعبة الشريفة</div>
+        </div>
+
+        <div class="dashboard-panel">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-compass"></i>
+                    <div class="stat-info">
+                        <small>زاوية القبلة</small>
+                        <strong id="angle">--°</strong>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-route"></i>
+                    <div class="stat-info">
+                        <small>المسافة</small>
+                        <strong id="distance">-- كم</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-bar">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="location">جاري تحديد الموقع...</span>
+            </div>
+
+            <section class="prayers-section">
+                <div class="section-title">
+                    <i class="far fa-clock"></i>
+                    <span>مواقيت الصلاة اليوم</span>
+                </div>
+                <div id="prayer-times" class="prayer-cards-container">
+                    </div>
+            </section>
+        </div>
+
+        <div class="floating-actions">
+            <button id="share-location" class="fab" title="مشاركة"><i class="fas fa-share-nodes"></i></button>
+            <button id="reload-location" class="fab" title="تحديث" onclick="location.reload()"><i class="fas fa-arrows-rotate"></i></button>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/adhan/dist/adhan.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
