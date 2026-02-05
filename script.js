@@ -1,3 +1,26 @@
+/* ===== COMPASS RESIZE FALLBACK =====
+   أضف هذا الجزء في أسفل script.js أو داخل startApp بعد تحميل الـ DOM */
+(function ensureSquareCompass() {
+  const resizeCompass = () => {
+    const c = document.querySelector('.compass-container');
+    if (!c) return;
+    // استخدم aspect-ratio إذا مدعوم — لكن في الفالّباك نضبط اليدوياً
+    if (!CSS.supports || !CSS.supports('aspect-ratio', '1 / 1')) {
+      const w = c.clientWidth;
+      c.style.height = `${w}px`;
+    } else {
+      // تأكد أننا لا نترك قيمة height ثابتة لو قبلاً عيّنّاها
+      c.style.height = '';
+    }
+  };
+
+  window.addEventListener('resize', resizeCompass, { passive: true });
+  window.addEventListener('orientationchange', () => setTimeout(resizeCompass, 150));
+  // نطلقها بعد تحميل الصفحة
+  document.addEventListener('DOMContentLoaded', resizeCompass);
+  // وننادى مرة إضافية لو تم استدعاء startApp لاحقاً
+  setTimeout(resizeCompass, 300);
+})();
 /**
  * Qibla Finder Pro - Core Logic
  * الإصدار الاحترافي الكامل 2026 - محسّن للموبايل
