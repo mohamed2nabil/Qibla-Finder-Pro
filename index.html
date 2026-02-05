@@ -8,15 +8,13 @@
     <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="https://img.icons8.com/color/192/kaaba.png">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="dark-mode"> <video id="video-bg" autoplay playsinline muted class="hidden"></video>
+<body class="dark-mode"> 
+    <video id="video-bg" autoplay playsinline muted class="hidden"></video>
 
     <div id="loading-spinner" class="spinner-overlay hidden">
         <div class="loader-content">
@@ -51,28 +49,36 @@
     <main class="app-main">
         <div id="visualizer">
             <div class="compass-container">
-                <div class="phone-head-indicator">
-                    <i class="fas fa-caret-up"></i>
-                </div>
+                <div class="phone-head-indicator"></div>
 
                 <div class="compass-canvas-wrapper" id="compass-ui">
-                    <div class="compass-layer outer-frame"></div>
+                    <div class="compass-layer outer-ticks" id="ticks-overlay">
+                    </div>
                     
                     <div class="compass-layer dial-plate" id="dial">
-                        <span class="direction n">N</span>
-                        <span class="direction e">E</span>
-                        <span class="direction s">S</span>
-                        <span class="direction w">W</span>
+                        <div class="direction n">N</div>
+                        <div class="direction ne">NE</div>
+                        <div class="direction e">E</div>
+                        <div class="direction se">SE</div>
+                        <div class="direction s">S</div>
+                        <div class="direction sw">SW</div>
+                        <div class="direction w">W</div>
+                        <div class="direction nw">NW</div>
                     </div>
 
                     <div class="compass-layer needle-box" id="qibla-needle">
-                        <div class="kaaba-icon">
-                            <img src="https://img.icons8.com/color/48/kaaba.png" alt="Kaba">
+                        <div class="kaaba-icon-wrapper">
+                            <img src="https://img.icons8.com/color/48/kaaba.png" alt="Kaaba">
                         </div>
-                        <div class="needle-arrow"></div>
+                        <div class="main-needle"></div>
                     </div>
 
-                    <div class="compass-center"></div>
+                    <div class="compass-center">
+                        <div class="center-content">
+                            <span id="center-degree">--°</span>
+                            <small id="center-direction">N</small>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="success-halo" class="success-glow"></div>
@@ -93,7 +99,7 @@
                 <div class="stat-item">
                     <i class="fas fa-route"></i>
                     <div class="stat-info">
-                        <small>المسافة</small>
+                        <small>المسافة للكعبة</small>
                         <strong id="distance">-- كم</strong>
                     </div>
                 </div>
@@ -110,7 +116,7 @@
                     <span>مواقيت الصلاة اليوم</span>
                 </div>
                 <div id="prayer-times" class="prayer-cards-container">
-                    </div>
+                </div>
             </section>
         </div>
 
