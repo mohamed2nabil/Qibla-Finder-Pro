@@ -1,48 +1,46 @@
-/* Qibla Finder Pro - Full Stylesheet
-   Design: Modern Glassmorphism & Hybrid Professional Layers
+/* Qibla Finder Pro - Redesigned to Match Reference Image EXACTLY
+   التصميم الكامل المطابق للصورة المرجعية
 */
 
 :root {
-    /* وضع الليل (الافتراضي) */
-    --primary-bg: #0f172a;
+    --primary-bg: #0a1628;
     --accent-gold: #fbbf24;
-    --accent-gold-glow: rgba(251, 191, 36, 0.4);
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --text-white: #f8fafc;
+    --accent-red: #ef4444;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-white: #ffffff;
+    --text-cyan: #4dd0e1;
     --text-gray: #94a3b8;
-    --glow-shadow: 0 0 30px var(--accent-gold-glow);
 }
 
-/* فئات تبديل الوضع (Light/Dark Mode) */
 body.light-mode {
     --primary-bg: #f1f5f9;
     --text-white: #1e293b;
     --glass-bg: rgba(0, 0, 0, 0.05);
     --glass-border: rgba(0, 0, 0, 0.1);
-    --text-gray: #64748b;
 }
 
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: 'Cairo', sans-serif;
-    margin: 0;
-    padding: 0;
     height: 100vh;
-    background-color: var(--primary-bg);
+    background: #0a1628;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 25px 25px;
     color: var(--text-white);
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-/* فيديو الخلفية (الواقع المعزز) */
+/* فيديو الخلفية */
 #video-bg {
     position: fixed;
     top: 0;
@@ -50,10 +48,10 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -2;
+    z-index: -1;
 }
 
-/* شاشات التغطية (Loading & Onboarding) */
+/* شاشات التحميل */
 .spinner-overlay, .overlay {
     position: fixed;
     inset: 0;
@@ -65,53 +63,130 @@ body {
     justify-content: center;
     padding: 20px;
     text-align: center;
-    backdrop-filter: blur(15px);
 }
 
 .onboarding-card {
-    background: var(--glass-bg);
+    background: rgba(15, 23, 42, 0.95);
     padding: 40px 30px;
     border-radius: 30px;
     border: 1px solid var(--glass-border);
-    max-width: 340px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    max-width: 380px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.onboarding-card h2 {
+    font-size: 1.8rem;
+    margin: 20px 0 15px;
+    color: var(--text-white);
+}
+
+.onboarding-card p {
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.icon-anim {
+    font-size: 4rem;
+    color: var(--accent-gold);
+    position: relative;
+}
+
+.ripple {
+    position: absolute;
+    inset: -20px;
+    border: 3px solid var(--accent-gold);
+    border-radius: 50%;
+    animation: ripple-anim 2s infinite;
+}
+
+@keyframes ripple-anim {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
 }
 
 .start-btn {
     background: var(--accent-gold);
     color: #000;
     border: none;
-    padding: 15px 40px;
-    font-size: 1.1rem;
-    font-weight: bold;
+    padding: 16px 45px;
+    font-size: 1.15rem;
+    font-weight: 700;
     border-radius: 50px;
     margin-top: 25px;
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
 }
 
-/* الهيدر المحسن */
+.start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(251, 191, 36, 0.6);
+}
+
+.start-btn:active {
+    transform: translateY(0);
+}
+
+/* الهيدر */
 .glass-header {
-    padding: 20px;
+    padding: 18px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
+    z-index: 100;
+    background: rgba(10, 22, 40, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.logo i {
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+}
+
+.header-controls {
+    display: flex;
+    gap: 12px;
 }
 
 .header-btn {
-    background: none;
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
     color: var(--text-white);
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.2rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* منطقة البوصلة الرئيسية */
+.header-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+/* المنطقة الرئيسية */
+.app-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 #visualizer {
     flex: 1;
     display: flex;
@@ -119,91 +194,304 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 20px;
+    padding: 30px 20px;
 }
 
 .compass-container {
     position: relative;
-    width: 85vw;
-    height: 85vw;
-    max-width: 350px;
-    max-height: 350px;
+    width: min(85vw, 450px);
+    height: min(85vw, 450px);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* الخط الأحمر الثابت في الأعلى */
 .phone-head-indicator {
     position: absolute;
-    top: -35px;
-    font-size: 1.8rem;
-    color: var(--accent-gold);
-    text-shadow: var(--glow-shadow);
-    z-index: 10;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(to bottom, #ef4444, rgba(239, 68, 68, 0.5));
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+    z-index: 100;
 }
 
+/* البوصلة الرئيسية - مطابقة للصورة */
 .compass-canvas-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--glass-bg) 0%, transparent 75%);
-    border: 8px solid var(--glass-border);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(40, 60, 80, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at center, #1a2d40 0%, #0f1d2e 60%, #050d18 100%);
+    box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.9),
+        inset 0 0 100px rgba(0, 0, 0, 0.8),
+        0 0 0 12px #182838,
+        0 0 0 16px #0d1620;
 }
 
-/* طبقات البوصلة */
+/* الطبقة الدوارة - الشرطات */
+.outer-ticks {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.tick {
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    top: 3px;
+    left: 50%;
+    margin-left: -1px;
+    transform-origin: 50% 223px;
+}
+
+.tick.long {
+    height: 18px;
+    background: rgba(255, 255, 255, 0.85);
+    width: 3px;
+    margin-left: -1.5px;
+}
+
+/* الأرقام الزرقاء المتوهجة */
+.tick-number {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #4dd0e1;
+    text-shadow: 
+        0 0 15px rgba(77, 208, 225, 1),
+        0 0 25px rgba(77, 208, 225, 0.6);
+    width: 40px;
+    text-align: center;
+}
+
+/* الطبقة الدوارة - الاتجاهات */
 .dial-plate {
     position: absolute;
-    inset: 15px;
+    inset: 0;
     border-radius: 50%;
     transition: transform 0.1s linear;
+    z-index: 3;
 }
 
+/* الاتجاهات الرئيسية */
 .direction {
     position: absolute;
-    font-weight: 900;
-    font-size: 1.3rem;
-    color: var(--text-gray);
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #e8e8e8;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
-.direction.n { top: 10px; left: 50%; transform: translateX(-50%); color: #ef4444; }
-.direction.e { right: 10px; top: 50%; transform: translateY(-50%); }
-.direction.s { bottom: 10px; left: 50%; transform: translateX(-50%); }
-.direction.w { left: 10px; top: 50%; transform: translateY(-50%); }
+.direction.n { 
+    top: 35px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    color: #ef4444;
+    font-size: 1.8rem;
+    text-shadow: 0 0 15px rgba(239, 68, 68, 1);
+}
 
+.direction.e { 
+    right: 35px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+}
+
+.direction.s { 
+    bottom: 35px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+}
+
+.direction.w { 
+    left: 35px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+}
+
+/* الاتجاهات الفرعية */
+.direction.ne, .direction.nw, .direction.se, .direction.sw {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    color: #c0c0c0;
+}
+
+.direction.ne { top: 70px; right: 70px; }
+.direction.nw { top: 70px; left: 70px; }
+.direction.se { bottom: 70px; right: 70px; }
+.direction.sw { bottom: 70px; left: 70px; }
+
+/* السهام البيضاء الكبيرة - مثل الصورة بالضبط */
+/* سهم شمالي */
+.direction.n::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 35px solid #e8e8e8;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+/* سهم شرقي */
+.direction.e::after {
+    content: '';
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 35px solid #e8e8e8;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+/* سهم جنوبي */
+.direction.s::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 35px solid #e8e8e8;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+/* سهم غربي */
+.direction.w::after {
+    content: '';
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 35px solid #e8e8e8;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+/* إبرة القبلة - الإبرة الحمراء الثابتة */
 .needle-box {
     position: absolute;
     inset: 0;
     z-index: 5;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     transition: transform 0.1s linear;
 }
 
-.kaaba-icon {
+/* أيقونة الكعبة */
+.kaaba-icon-wrapper {
     position: absolute;
-    top: 20px;
-    width: 45px;
-    filter: drop-shadow(var(--glow-shadow));
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
-.needle-arrow {
-    width: 6px;
-    height: 42%;
-    background: linear-gradient(to top, transparent, var(--accent-gold));
+.kaaba-icon-wrapper img {
+    width: 42px;
+    height: 42px;
+    filter: drop-shadow(0 0 20px rgba(251, 191, 36, 1));
+}
+
+/* الإبرة الحمراء - مثلث واضح */
+.main-needle {
     position: absolute;
-    top: 10%;
-    clip-path: polygon(50% 0%, 100% 100%, 50% 82%, 0% 100%);
+    top: 60px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-bottom: 160px solid #ef4444;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 25px rgba(239, 68, 68, 1));
+}
+
+/* المركز الرقمي */
+.compass-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(40, 60, 80, 0.6) 0%, transparent 50%),
+        linear-gradient(135deg, #1a2d42 0%, #0e1b2e 100%);
+    border: 4px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.9),
+        inset 0 2px 15px rgba(255, 255, 255, 0.08),
+        inset 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#center-degree {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+    line-height: 1;
+}
+
+#center-direction {
+    font-size: 1rem;
+    color: #8ea9c1;
+    margin-top: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.status-text {
+    margin-top: 35px;
+    font-size: 1.15rem;
+    color: var(--text-gray);
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* لوحة البيانات */
 .dashboard-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(25px);
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(30px);
     border-top: 1px solid var(--glass-border);
-    padding: 20px;
+    padding: 25px;
     border-radius: 35px 35px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .stats-grid {
@@ -214,74 +502,233 @@ body {
 }
 
 .stat-item {
-    background: var(--glass-bg);
-    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 18px;
     border-radius: 20px;
     display: flex;
-    flex-direction: column;
+    gap: 15px;
     align-items: center;
     border: 1px solid var(--glass-border);
 }
 
-.stat-item i { color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 5px; }
+.stat-item i {
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+}
 
-/* أوقات الصلاة */
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-info small {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+}
+
+.stat-info strong {
+    font-size: 1.15rem;
+    color: var(--text-white);
+    font-weight: 700;
+}
+
+.location-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 18px;
+    margin-bottom: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.location-bar i {
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+}
+
+/* مواقيت الصلاة */
+.prayers-section {
+    margin-top: 15px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-white);
+}
+
+.section-title i {
+    color: var(--accent-gold);
+}
+
 .prayer-cards-container {
     display: flex;
     overflow-x: auto;
     gap: 12px;
-    padding: 10px 0;
+    padding: 12px 0;
     scrollbar-width: none;
 }
 
-.prayer-card {
-    min-width: 95px;
-    background: var(--glass-bg);
-    padding: 15px 10px;
-    border-radius: 20px;
-    text-align: center;
-    border: 1px solid var(--glass-border);
+.prayer-cards-container::-webkit-scrollbar {
+    display: none;
 }
 
-/* الحالة النشطة عند النجاح */
+.prayer-card {
+    min-width: 100px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 16px 12px;
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.prayer-card small {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+}
+
+.prayer-card strong {
+    color: var(--text-white);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* حالة مواجهة القبلة */
 .success-glow {
     position: absolute;
-    inset: -25px;
+    inset: -30px;
     border-radius: 50%;
-    border: 3px solid var(--accent-gold);
+    border: 5px solid var(--accent-gold);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s;
-    box-shadow: inset 0 0 30px var(--accent-gold), 0 0 30px var(--accent-gold);
+    box-shadow: 
+        inset 0 0 50px var(--accent-gold),
+        0 0 50px var(--accent-gold);
 }
 
-.facing-qibla .success-glow { opacity: 0.7; animation: pulse-gold 1.5s infinite; }
-.facing-qibla .compass-canvas-wrapper { border-color: var(--accent-gold); }
+.facing-qibla .success-glow {
+    opacity: 0.9;
+    animation: pulse-success 1.5s infinite;
+}
 
-@keyframes pulse-gold {
-    0% { transform: scale(1); opacity: 0.7; }
-    100% { transform: scale(1.15); opacity: 0; }
+.facing-qibla .compass-canvas-wrapper {
+    box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.9),
+        inset 0 0 100px rgba(0, 0, 0, 0.8),
+        0 0 0 12px var(--accent-gold),
+        0 0 0 16px rgba(251, 191, 36, 0.3),
+        0 0 60px rgba(251, 191, 36, 0.6);
+}
+
+.facing-qibla #center-degree {
+    color: var(--accent-gold);
+    text-shadow: 0 0 20px rgba(251, 191, 36, 1);
+}
+
+@keyframes pulse-success {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 0.5; }
 }
 
 /* الأزرار العائمة */
 .floating-actions {
     position: fixed;
-    bottom: 100px;
-    left: 20px;
+    bottom: 120px;
+    left: 25px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    z-index: 200;
 }
 
 .fab {
-    width: 50px;
-    height: 50px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     background: var(--accent-gold);
     color: #000;
     border: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 25px rgba(251, 191, 36, 0.5);
     cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
 }
 
-.hidden { display: none !important; }
+.fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 35px rgba(251, 191, 36, 0.7);
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+/* Loading */
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.loader-content p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+}
+
+.qibla-loader {
+    width: 70px;
+    height: 70px;
+    border: 6px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent-gold);
+    border-radius: 50%;
+    animation: spin-loader 1s linear infinite;
+}
+
+@keyframes spin-loader {
+    to { transform: rotate(360deg); }
+}
+
+/* Light Mode */
+body.light-mode .compass-canvas-wrapper {
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(180, 200, 220, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at center, #d5e3f0 0%, #b8cfe0 60%, #9ab8d0 100%);
+    box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.3),
+        inset 0 0 100px rgba(0, 0, 0, 0.15),
+        0 0 0 12px #c0d5e8,
+        0 0 0 16px #d5e5f2;
+}
+
+body.light-mode .compass-center {
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(200, 220, 240, 0.6) 0%, transparent 50%),
+        linear-gradient(135deg, #e5f0f8 0%, #d0e0f0 100%);
+}
+
+body.light-mode .tick {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode .tick.long {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hidden {
+    display: none !important;
+}
